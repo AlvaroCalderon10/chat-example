@@ -13,6 +13,8 @@
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #messages > li { padding: 0.5rem 1rem; }
       #messages > li:nth-child(odd) { background: #efefef; }
+      #messages > end {color:red; font-family:-apple-system;}
+
     </style>
   </head>
   <body>
@@ -46,7 +48,10 @@
       });
 
       function closeSock(){
-        window.alert("cierro el socket aquí");
+        socket.disconnect();
+        var item =document.createElement('end');
+        item.textContent= "Socket Cerrado Con éxito";
+        messages.appendChild(item);
       }
     </script>
   </body>
