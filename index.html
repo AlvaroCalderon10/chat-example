@@ -11,6 +11,7 @@
       #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
 
       #messages { list-style-type: none; margin: 0; padding: 0; }
+      #escribiendo{margin:5px; padding: 0.5rem 1rem;}
       #messages > li { padding: 0.5rem 1rem; }
       #messages > li:nth-child(odd) { background: #efefef; }
       #messages > end {color:red; font-family:-apple-system;}
@@ -19,6 +20,7 @@
   </head>
   <body>
     <ul id="messages"></ul>
+    <input id="escribiendo"></input>
     <form id="form" action="">
       <input id="input" autocomplete="off" /><button>Send</button>
       <button id="boton" onclick="closeSock()">CloseSocket</button>
@@ -31,12 +33,22 @@
       var messages = document.getElementById('messages');
       var form = document.getElementById('form');
       var input = document.getElementById('input');
+      var escri =document.getElementById('escribiendo');
 
+      form.addEventListener('keydown',() => {
+      const myTimeout = setTimeout(() =>{
+        escri.value="";
+      }, 1000);
+        escri.value="Escribiendo";
+      })
+
+    
       form.addEventListener('submit', function(e) {
         e.preventDefault();
         if (input.value) {
           socket.emit('chat message', input.value);
           input.value = '';
+          escri.value="";
         }
       });
 
