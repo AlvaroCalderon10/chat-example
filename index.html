@@ -9,6 +9,7 @@
       #input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
       #input:focus { outline: none; }
       #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
+      #escribiendo > msg {style:none;}
 
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #escribiendo{margin:5px; padding: 0.5rem 1rem;}
@@ -20,8 +21,11 @@
   </head>
   <body>
     <ul id="messages"></ul>
-    <input id="escribiendo"></input>
+    
     <form id="form" action="">
+      <div id="escribiendo">
+          <output id='msg'></output>
+      </div>
       <input id="input" autocomplete="off" /><button>Send</button>
       <button id="boton" onclick="closeSock()">CloseSocket</button>
     </form>
@@ -33,13 +37,14 @@
       var messages = document.getElementById('messages');
       var form = document.getElementById('form');
       var input = document.getElementById('input');
-      var escri =document.getElementById('escribiendo');
+      var escri =document.getElementById('msg');
 
       form.addEventListener('keydown',() => {
       const myTimeout = setTimeout(() =>{
         escri.value="";
       }, 1000);
         escri.value="Escribiendo";
+        
       })
 
     
