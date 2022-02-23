@@ -9,7 +9,6 @@
       #input { border: none; padding: 0 1rem; flex-grow: 1; border-radius: 2rem; margin: 0.25rem; }
       #input:focus { outline: none; }
       #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
-      #escribiendo > msg {style:none;}
 
       #messages { list-style-type: none; margin: 0; padding: 0; }
       #escribiendo{margin:5px; padding: 0.5rem 1rem;}
@@ -38,12 +37,15 @@
       var form = document.getElementById('form');
       var input = document.getElementById('input');
       var escri =document.getElementById('msg');
-
+      let timeout;
+      
       form.addEventListener('keydown',() => {
-      const myTimeout = setTimeout(() =>{
-        escri.value="";
-      }, 1000);
-        escri.value="Escribiendo";
+        clearTimeout(timeout);
+        timeout = setTimeout(() =>{
+          escri.value="";
+          clearTimeout(timeout);
+        }, 1000);
+        escri.value="Escribiendo...";
         
       })
 
