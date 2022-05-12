@@ -10,20 +10,18 @@
       #input:focus { outline: none; }
       #form > button { background: #333; border: none; padding: 0 1rem; margin: 0.25rem; border-radius: 3px; outline: none; color: #fff; }
 
-      #messages {margin: 0; padding: 0; }
+      #messages >package {display:flex; justify-content:row;margin: 0; padding: 0; }
       #escribiendo{margin:5px; padding: 0.5rem 1rem;}
-      #messages > li { padding: 0.5rem 1rem; }
-      #messages > li:nth-child(odd) { background: #efefef; }
+      #messages >package > li { padding: 0.5rem 1rem; }
+      #messages >package > li:nth-child(odd) { background: #efefef; }
       #messages > end {color:red; font-family:-apple-system;}
-      #pack_messages {}
-      #messages >img { border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 40px;}
+      #messages >package>img { border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 40px;}
 
     </style>
   </head>
   <body>
-    <div id=pack_messages>
-      <ul id="messages"></ul>
-    </div>
+    <ul id="messages"></ul>
+    
     
     <form id="form" action="">
       <div id="escribiendo">
@@ -65,13 +63,15 @@
       });
 
       socket.on('chat message', function(msg) {
+        var package=document.createElement("package");
         var DOM_img = document.createElement("img");
         DOM_img.src = "https://cdn.icon-icons.com/icons2/1736/PNG/512/4043260-avatar-male-man-portrait_113269.png";
         var item = document.createElement('li');
         if(usuario=="") usuario="User";
         item.textContent = usuario + " : " +msg;
-        messages.appendChild(DOM_img);
-        messages.appendChild(item);
+        package.appendChild(DOM_img);
+        package.appendChild(item);
+        messages.appendChild(package);
         window.scrollTo(0, document.body.scrollHeight);
       });
 
